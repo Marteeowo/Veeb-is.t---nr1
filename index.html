@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#222624" />
+    <meta name="theme-color" content="#f4f0e7" />
     <meta
       name="description"
       content="Broneeringute ülevaade: otsi klienti, filtreeri teenust ja leia sobiv aeg."
@@ -11,7 +11,14 @@
     <title>Broneeringud · Ajaruum</title>
     <link
       rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23222624'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='sans-serif' font-size='44' fill='%23edb64d'%3Ea%3C/text%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23b93c29'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='serif' font-size='44' fill='%23f4f0e7'%3Ea%3C/text%3E%3C/svg%3E"
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/manrope.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
@@ -21,35 +28,46 @@
     <header class="masthead">
       <div class="topbar wrap">
         <a class="brand" href="./" aria-label="Ajaruum, avaleht"
-          ><span class="brand-mark" aria-hidden="true">a</span>ajaruum<span
+          ><span class="brand-mark" aria-hidden="true">✳</span>ajaruum<span
             class="brand-period"
             >.</span
           ></a
         >
         <span class="workspace-label">ILU JA HEAOLU</span>
+        <a class="nav-link" href="#booking-panel"
+          >Broneeringud <span aria-hidden="true">↘</span></a
+        >
         <span class="demo-label">Õppeprojekt</span>
       </div>
       <div class="hero wrap">
-        <div>
-          <p class="eyebrow">SINU BRONEERINGUTE ÜLEVAADE</p>
-          <h1>Rohkem selgust.<br /><span>Rohkem aega.</span></h1>
+        <div class="hero-intro">
+          <p class="eyebrow">VÄHEM KIIRET. ROHKEM HEAOLU.</p>
+          <h1>Hea aeg.<br /><span>Sinu kätes.</span></h1>
           <p class="hero-copy">
-            Kõik kliendid, teenused ja kohtumised ühes kohas.<br
-              class="desktop-break"
-            />
-            Leia vajalik broneering paari hetkega.
+            Iga kohtumine väärib oma aega.<br />
+            Kõik sinu broneeringud, ühes rütmis.
           </p>
+          <a class="hero-link" href="#booking-panel"
+            >Leia oma broneering <span aria-hidden="true">↗</span></a
+          >
         </div>
-        <div class="overview">
-          <span class="overview-label">KOKKU BRONEERINGUID</span
-          ><strong id="total-count">—</strong
-          ><span id="date-range">Laadin perioodi…</span>
-          <div
-            class="service-strip"
-            id="service-strip"
-            aria-hidden="true"
-          ></div>
-          <small>Ülevaade kogu andmestikust</small>
+        <div class="timepiece">
+          <div class="orbit" aria-hidden="true">
+            <span class="orbit-hand"></span>
+          </div>
+          <div class="overview">
+            <span class="overview-label">KOKKU BRONEERINGUID</span
+            ><strong id="total-count">—</strong>
+            <div
+              class="service-strip"
+              id="service-strip"
+              aria-hidden="true"
+            ></div>
+            <small>Ülevaade kogu andmestikust</small>
+          </div>
+          <span class="timepiece-caption" id="date-range"
+            >Laadin perioodi…</span
+          >
         </div>
       </div>
     </header>
@@ -69,7 +87,7 @@
             <h2 id="bookings-heading">
               Broneeringud <span id="heading-count">—</span>
             </h2>
-            <p>Hea päev algab heast ülevaatest.</p>
+            <p>Sinu kohtumised. Igaüks omal ajal.</p>
           </div>
           <button class="button secondary" id="refresh" type="button">
             <span aria-hidden="true">↻</span> Värskenda

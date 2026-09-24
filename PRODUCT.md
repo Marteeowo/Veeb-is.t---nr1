@@ -10,7 +10,7 @@ Estonian school assignment: a teacher-inspectable, read-only booking dashboard d
 
 ## Design direction
 
-Confident, calm, clear. A compact salon appointment desk with a charcoal masthead, honey accent, white working surface and four muted service colors. Avoid a basic unstyled school table, decorative fake controls, saturated row fills and unnecessary frameworks.
+An expressive studio appointment journal: warm paper, vermilion ink, oversized Manrope typography paired with an italic serif, and a clock-inspired total. Four service-color panels lead into a readable appointment ledger with softer matching row backgrounds. Use deliberate typographic contrast and restrained entrance motion; avoid generic admin cards, fake controls and unnecessary frameworks. The local Manrope font is distributed under the included SIL Open Font License.
 
 ## Principles
 
