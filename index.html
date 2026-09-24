@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="et">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#222624" />
+    <meta
+      name="description"
+      content="Broneeringute ülevaade: otsi klienti, filtreeri teenust ja leia sobiv aeg."
+    />
+    <title>Broneeringud · Ajaruum</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23222624'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='sans-serif' font-size='44' fill='%23edb64d'%3Ea%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#booking-panel">Liigu broneeringuteni</a>
+    <header class="masthead">
+      <div class="topbar wrap">
+        <a class="brand" href="./" aria-label="Ajaruum, avaleht"
+          ><span class="brand-mark" aria-hidden="true">a</span>ajaruum<span
+            class="brand-period"
+            >.</span
+          ></a
+        >
+        <span class="workspace-label">ILU JA HEAOLU</span>
+        <span class="demo-label">Õppeprojekt</span>
+      </div>
+      <div class="hero wrap">
+        <div>
+          <p class="eyebrow">SINU BRONEERINGUTE ÜLEVAADE</p>
+          <h1>Rohkem selgust.<br /><span>Rohkem aega.</span></h1>
+          <p class="hero-copy">
+            Kõik kliendid, teenused ja kohtumised ühes kohas.<br
+              class="desktop-break"
+            />
+            Leia vajalik broneering paari hetkega.
+          </p>
+        </div>
+        <div class="overview">
+          <span class="overview-label">KOKKU BRONEERINGUID</span
+          ><strong id="total-count">—</strong
+          ><span id="date-range">Laadin perioodi…</span>
+          <div
+            class="service-strip"
+            id="service-strip"
+            aria-hidden="true"
+          ></div>
+          <small>Ülevaade kogu andmestikust</small>
+        </div>
+      </div>
+    </header>
+    <main class="wrap">
+      <section
+        class="service-summary"
+        aria-label="Broneeringute arv teenuste kaupa"
+        id="service-summary"
+      ></section>
+      <section
+        class="booking-panel"
+        id="booking-panel"
+        aria-labelledby="bookings-heading"
+      >
+        <div class="panel-heading">
+          <div>
+            <h2 id="bookings-heading">
+              Broneeringud <span id="heading-count">—</span>
+            </h2>
+            <p>Hea päev algab heast ülevaatest.</p>
+          </div>
+          <button class="button secondary" id="refresh" type="button">
+            <span aria-hidden="true">↻</span> Värskenda
+          </button>
+        </div>
+        <div class="toolbar">
+          <label class="search-field"
+            ><span class="sr-only">Otsi klienti või teenust</span
+            ><span class="search-icon" aria-hidden="true"></span
+            ><input
+              id="search"
+              type="search"
+              placeholder="Otsi klienti või teenust…"
+              autocomplete="off"
+          /></label>
+          <label class="sort-field"
+            ><span>Järjesta</span
+            ><select id="sort">
+              <option value="asc">Varasemad enne</option>
+              <option value="desc">Hilisemad enne</option>
+            </select></label
+          >
+        </div>
+        <div class="filter-row">
+          <div
+            class="filters"
+            id="filters"
+            role="group"
+            aria-label="Filtreeri teenuse järgi"
+          >
+            <button
+              type="button"
+              class="filter active"
+              data-service="all"
+              aria-pressed="true"
+            >
+              Kõik</button
+            ><button
+              type="button"
+              class="filter"
+              data-service="Juuksur"
+              aria-pressed="false"
+            >
+              Juuksur</button
+            ><button
+              type="button"
+              class="filter"
+              data-service="Massaaž"
+              aria-pressed="false"
+            >
+              Massaaž</button
+            ><button
+              type="button"
+              class="filter"
+              data-service="Spa"
+              aria-pressed="false"
+            >
+              Spa</button
+            ><button
+              type="button"
+              class="filter"
+              data-service="Kosmeetika"
+              aria-pressed="false"
+            >
+              Kosmeetika
+            </button>
+          </div>
+          <span id="result-count" role="status">Laadin broneeringuid…</span>
+        </div>
+        <div
+          class="table-scroll"
+          tabindex="0"
+          role="region"
+          aria-label="Broneeringute tabel"
+          aria-busy="true"
+          id="table-region"
+        >
+          <table id="bookings-table">
+            <caption class="sr-only">
+              Klientide broneeringud teenuse, kuupäeva ja kellaajaga
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Klient</th>
+                <th scope="col">Teenus</th>
+                <th scope="col" aria-sort="ascending" id="date-heading">
+                  Kuupäev <span aria-hidden="true" id="sort-arrow">↑</span>
+                </th>
+                <th scope="col">Kellaaeg</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-body"></tbody>
+          </table>
+        </div>
+        <div id="loading" class="loading-state" role="status">
+          <p>Toome broneeringud sinuni…</p>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+        <div id="empty" class="message-state" hidden>
+          <span class="state-symbol" aria-hidden="true">⌕</span>
+          <h3>Ühtegi vastet ei leitud</h3>
+          <p>Proovi teist nime või vali mõni muu teenus.</p>
+          <button class="button" id="reset" type="button">
+            Tühjenda filtrid
+          </button>
+        </div>
+        <div id="error" class="message-state" role="alert" hidden>
+          <span class="state-symbol" aria-hidden="true">!</span>
+          <h3>Broneeringuid ei saanud laadida</h3>
+          <p>Kontrolli internetiühendust ja proovi uuesti.</p>
+          <button class="button" id="retry" type="button">Proovi uuesti</button>
+        </div>
+        <div class="table-footer">
+          <span>Teenuse värv aitab broneeringuid eristada.</span
+          ><a href="#bookings-heading">Tagasi üles ↑</a>
+        </div>
+      </section>
+      <aside class="source-note" id="source-note" aria-live="polite">
+        Andmeallikas:
+        <a
+          href="https://metshein.com/kordamine/json/broneeringud.json"
+          target="_blank"
+          rel="noopener"
+          >Metsheina näidisandmed ↗</a
+        ><span id="source-status">Ühendan andmeallikaga…</span>
+      </aside>
+      <noscript
+        ><p class="noscript">
+          Broneeringute laadimiseks luba brauseris JavaScript.
+        </p></noscript
+      >
+    </main>
+    <footer class="page-footer wrap">
+      <span
+        >ajaruum. <span class="footer-subtitle">Aeg hästi hoitud.</span></span
+      ><span>Broneeringute kuvamine · HTML / CSS / JavaScript</span>
+    </footer>
+  </body>
+</html>
